@@ -8,7 +8,7 @@ namespace :import do
     index = 0
     CSV.foreach("./db/csv/invoices.csv", headers: true) do |invoice|
       index += 1
-      print "#{index}/#{invoice_count} ".light_code
+      print "#{index}/#{invoice_count} ".light_blue
       if Invoice.create(invoice.to_h)
         puts "Invoice #{invoice["id"]}".green
       else
