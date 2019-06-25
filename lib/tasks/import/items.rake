@@ -7,9 +7,8 @@ namespace :import do
     item_count = file.count
     index = 1
     file.each do |item|
-      merchant = Merchant.find(item.merchant_id)
       p "#{index}/#{item_count}"
-      if merchant.items.create(item)
+      if Items.create(item)
         puts "#{item.name}".green
       else
         puts "#{item.name} was unable to be saved".red
