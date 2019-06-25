@@ -3,7 +3,8 @@ require 'csv'
 namespace :import do
   desc "Imports Invoices records from CSV in db/csv"
   task invoices: :environment do
-    invoice_count = file.count
+    invoice_count = 0
+    CSV.foreach("./db/csv/invoices.csv", headers: true) {|row| invoice_count += 1 }
     index = 0
     CSV.foreach("./db/csv/invoices.csv", headers: true) do |invoice|
       index += 1
