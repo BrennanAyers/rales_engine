@@ -5,13 +5,14 @@ namespace :import do
   task merchants: :environment do
     file = CSV.table("./db/csv/merchants.csv", options = Hash.new)
     merchant_count = file.count
-    index = 1
+    index = 0
     file.each do |merchant|
-      p "#{index}/#{merchant_count}"
-      if Merchant.create(merchant)
-        puts "#{merchant.name}".green
+      index += 1
+      print "#{index}/#{merchant_count} ".light_blue
+      if Merchant.create(merchant.to_h)
+        puts "#{merchant[:name]}".green
       else
-        puts "#{merchant.name} was unable to be saved".red
+        puts "#{merchant[:name]} was unable to be saved".red
       end
     end
   end
