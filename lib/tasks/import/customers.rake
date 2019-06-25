@@ -9,9 +9,9 @@ namespace :import do
     file.each do |customer|
       p "#{index}/#{customer_count}"
       if Customer.create(customer)
-        puts "#{customer.name}".green
+        puts "#{customer.first_name + " " + customer.last_name}".green
       else
-        puts "#{customer.name} was unable to be saved".red
+        puts "#{customer.first_name + " " + customer.last_name} was unable to be saved".red
       end
     end
   end
