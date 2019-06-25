@@ -9,7 +9,7 @@ namespace :import do
     file.each do |invoice_item|
       index += 1
       print "#{index}/#{invoice_item_count} ".light_blue
-      if InvoiceItems.create(invoice_item.to_h)
+      if InvoiceItem.create(invoice_item.to_h)
         puts "Invoice Item #{invoice_item[:id]}".green
       else
         puts "Invoice Item #{invoice_item[:id]} was unable to be saved".red

@@ -9,7 +9,7 @@ namespace :import do
     file.each do |transaction|
       index += 1
       print "#{index}/#{transaction_count} ".light_blue
-      if Transactions.create(transaction.to_h)
+      if Transaction.create(transaction.to_h)
         puts "Transaction #{transaction[:id]}".green
       else
         puts "Transaction #{transaction[:id]} was unable to be saved".red
