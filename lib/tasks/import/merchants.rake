@@ -10,9 +10,9 @@ namespace :import do
       index += 1
       print "#{index}/#{merchant_count} ".light_blue
       if Merchant.create(merchant.to_h)
-        puts "#{merchant[:name]}".green
+        puts "#{merchant["name"]}".green
       else
-        puts "#{merchant[:name]} was unable to be saved".red
+        puts "#{merchant["name"]} was unable to be saved".red
       end
     end
   end
