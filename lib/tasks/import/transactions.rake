@@ -5,13 +5,14 @@ namespace :import do
   task transactions: :environment do
     file = CSV.table("./db/csv/transactions.csv", options = Hash.new)
     transaction_count = file.count
-    index = 1
+    index = 0
     file.each do |transaction|
-      p "#{index}/#{transaction_count}"
-      if Transactions.create(transaction)
-        puts "Transaction #{transaction.id}".green
+      index += 1
+      print "#{index}/#{transaction_count} ".light_blue
+      if Transactions.create(transaction.to_h)
+        puts "Transaction #{transaction[:id]}".green
       else
-        puts "Transaction #{transaction.id} was unable to be saved".red
+        puts "Transaction #{transaction[:id]} was unable to be saved".red
       end
     end
   end

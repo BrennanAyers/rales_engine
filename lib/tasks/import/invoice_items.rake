@@ -5,13 +5,14 @@ namespace :import do
   task invoice_items: :environment do
     file = CSV.table("./db/csv/invoice_items.csv", options = Hash.new)
     invoice_item_count = file.count
-    index = 1
+    index = 0
     file.each do |invoice_item|
-      p "#{index}/#{invoice_item_count}"
-      if InvoiceItems.create(invoice_item)
-        puts "Invoice Item #{invoice_item.id}".green
+      index += 1
+      print "#{index}/#{invoice_item_count} ".light_blue
+      if InvoiceItems.create(invoice_item.to_h)
+        puts "Invoice Item #{invoice_item[:id]}".green
       else
-        puts "Invoice Item #{invoice_item.id} was unable to be saved".red
+        puts "Invoice Item #{invoice_item[:id]} was unable to be saved".red
       end
     end
   end

@@ -5,13 +5,14 @@ namespace :import do
   task customers: :environment do
     file = CSV.table("./db/csv/customers.csv", options = Hash.new)
     customer_count = file.count
-    index = 1
+    index = 0
     file.each do |customer|
-      p "#{index}/#{customer_count}"
-      if Customer.create(customer)
-        puts "#{customer.first_name + " " + customer.last_name}".green
+      index += 1
+      print "#{index}/#{customer_count} ".light_blue
+      if Customer.create(customer.to_h)
+        puts "#{customer[:first_name] + " " + customer[:last_name]}".green
       else
-        puts "#{customer.first_name + " " + customer.last_name} was unable to be saved".red
+        puts "#{customer[:first_name] + " " + customer[:last_name]} was unable to be saved".red
       end
     end
   end
