@@ -10,9 +10,9 @@ namespace :import do
       index += 1
       print "#{index}/#{item_count} ".light_blue
       if Item.create(item.to_h)
-        puts "#{item[:name]}".green
+        puts "#{item["name"]}".green
       else
-        puts "#{item[:name]} was unable to be saved".red
+        puts "#{item["name"]} was unable to be saved".red
       end
     end
   end

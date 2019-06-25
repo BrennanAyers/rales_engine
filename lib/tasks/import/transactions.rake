@@ -10,9 +10,9 @@ namespace :import do
       index += 1
       print "#{index}/#{transaction_count} ".light_blue
       if Transaction.create(transaction.to_h)
-        puts "Transaction #{transaction[:id]}".green
+        puts "Transaction #{transaction["id"]}".green
       else
-        puts "Transaction #{transaction[:id]} was unable to be saved".red
+        puts "Transaction #{transaction["id"]} was unable to be saved".red
       end
     end
   end

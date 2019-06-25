@@ -10,9 +10,9 @@ namespace :import do
       index += 1
       print "#{index}/#{customer_count} ".light_blue
       if Customer.create(customer.to_h)
-        puts "#{customer[:first_name] + " " + customer[:last_name]}".green
+        puts "#{customer["first_name"] + " " + customer["last_name"]}".green
       else
-        puts "#{customer[:first_name] + " " + customer[:last_name]} was unable to be saved".red
+        puts "#{customer["first_name"] + " " + customer["last_name"]} was unable to be saved".red
       end
     end
   end
