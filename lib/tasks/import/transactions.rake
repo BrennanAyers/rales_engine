@@ -3,10 +3,9 @@ require 'csv'
 namespace :import do
   desc "Imports Transactions records from CSV in db/csv"
   task transactions: :environment do
-    file = CSV.table("./db/csv/transactions.csv", options = Hash.new)
     transaction_count = file.count
     index = 0
-    file.each do |transaction|
+    CSV.foreach("./db/csv/transactions.csv", headers: true) do |transaction|
       index += 1
       print "#{index}/#{transaction_count} ".light_blue
       if Transaction.create(transaction.to_h)

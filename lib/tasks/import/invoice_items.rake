@@ -3,10 +3,9 @@ require 'csv'
 namespace :import do
   desc "Imports InvoiceItems records from CSV in db/csv"
   task invoice_items: :environment do
-    file = CSV.table("./db/csv/invoice_items.csv", options = Hash.new)
     invoice_item_count = file.count
     index = 0
-    file.each do |invoice_item|
+    CSV.foreach("./db/csv/invoice_items.csv", headers: true) do |invoice_item|
       index += 1
       print "#{index}/#{invoice_item_count} ".light_blue
       if InvoiceItem.create(invoice_item.to_h)
