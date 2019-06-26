@@ -26,5 +26,7 @@ describe "Transactions API" do
     expect(transaction["attributes"]["invoice_id"]).to eq(object.invoice_id)
     expect(transaction["attributes"]["credit_card_number"]).to eq(object.credit_card_number)
     expect(transaction["attributes"]["result"]).to eq(object.result)
+
+    expect(transaction["attributes"]["credit_card_expiration_date"]).to eq(nil)
   end
 end
