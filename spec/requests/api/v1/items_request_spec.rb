@@ -23,6 +23,7 @@ describe "Items API" do
     expect(response).to be_successful
     expect(item["type"]).to eq("item")
     expect(item["attributes"]["id"]).to eq(object.id)
+    expect(item["attributes"]["name"]).to eq(object.name)
     expect(item["attributes"]["description"]).to eq(object.description)
     expect(item["attributes"]["unit_price"]).to eq(object.unit_price)
     expect(item["attributes"]["merchant_id"]).to eq(object.merchant_id)
