@@ -19,7 +19,6 @@ describe 'Merchants Most Revenue API' do
   end
 
   it 'sends the top merchant by most revenue' do
-
     get '/api/v1/merchants/most_revenue?quantity=1'
 
     expect(response).to be_successful
@@ -30,5 +29,22 @@ describe 'Merchants Most Revenue API' do
     expect(merchant[0]["type"]).to eq("merchant")
     expect(merchant[0]["attributes"]["id"]).to eq(@merchant_2.id)
     expect(merchant[0]["attributes"]["name"]).to eq(@merchant_2.name)
+  end
+
+  it 'sends the top merchants by most revenue' do
+    merchant_list = [@merchant_2, @merchant_1, @merchant_3]
+    get '/api/v1/merchants/most_revenue'
+
+    expect(response).to be_successful
+
+    merchants = JSON.parse(response.body)["data"]
+
+    expect(merchants.count).to eq(3)
+
+    merchants.each_with_index do |merchant, index|
+      expect(merchant["type"]).to eq("merchant")
+      expect(merchant["attributes"]["id"]).to eq(merchant_list[index].id)
+      expect(merchant["attributes"]["name"]).to eq(merchant_list[index].name)
+    end
   end
 end
