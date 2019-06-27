@@ -20,15 +20,15 @@ describe 'Merchants Most Revenue API' do
 
   it 'sends the top merchant by most revenue' do
 
-    get '/api/v1/merchants/most_revenue'
+    get '/api/v1/merchants/most_revenue?quantity=1'
 
     expect(response).to be_successful
 
     merchant = JSON.parse(response.body)["data"]
 
     expect(merchant.count).to eq(1)
-    expect(merchant["type"]).to eq("merchant")
-    expect(merchant["attributes"]["id"]).to eq(@merchant_2.id)
-    expect(merchant["attributes"]["name"]).to eq(@merchant_2.name)
+    expect(merchant[0]["type"]).to eq("merchant")
+    expect(merchant[0]["attributes"]["id"]).to eq(@merchant_2.id)
+    expect(merchant[0]["attributes"]["name"]).to eq(@merchant_2.name)
   end
 end
