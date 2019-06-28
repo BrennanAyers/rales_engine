@@ -40,6 +40,15 @@ RSpec.describe Merchant, type: :model do
     it 'revenue' do
       expect(Merchant.revenue("2012-04-01")[0]["total_revenue"]).to eq(23000)
       expect(Merchant.revenue("2012-04-02")[0]["total_revenue"]).to eq(4200)
+
+      merchant_4 = create(:merchant)
+      customer_4 = create(:customer)
+      item_4 = create(:item, unit_price: 100, merchant: merchant_4)
+      invoice_4 = create(:invoice, merchant: merchant_4, customer: customer_4)
+      invoice_item_4 = create(:invoice_item, quantity: 15, unit_price: 100, invoice: invoice_4, item: item_4)
+      transaction_4 = create(:transaction, invoice: invoice_4)
+
+      expect(Merchant.revenue[0]["total_revenue"]).to eq(1500)
     end
   end
 end
