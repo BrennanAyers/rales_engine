@@ -38,8 +38,8 @@ RSpec.describe Merchant, type: :model do
     end
 
     it 'revenue' do
-      expect(Merchant.revenue("2012-04-01")).to eq(23000)
-      expect(Merchant.revenue("2012-04-02")).to eq(4200)
+      expect(Merchant.revenue("2012-04-01")[0]["total_revenue"]).to eq(23000)
+      expect(Merchant.revenue("2012-04-02")[0]["total_revenue"]).to eq(4200)
     end
   end
 end
