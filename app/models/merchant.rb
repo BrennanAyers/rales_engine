@@ -20,11 +20,24 @@ class Merchant < ApplicationRecord
     .limit(amount)
   end
 
-  def self.revenue(date = Date.today.to_s)
+  def self.revenue(date = nil)
+    date = Date.today.to_s if date == nil
     joins(invoices: [:invoice_items, :transactions])
     .where("CAST (invoices.updated_at AS DATE) = '#{Date.parse(date)}'")
     .merge(Transaction.successful)
     .select("SUM (invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
     .take
+  end
+
+  def revenue(date = nil)
+    total_revenue = invoices.joins(:invoice_items, :transactions)
+    .merge(Transaction.successful)
+    .select("SUM (invoice_items.quantity * invoice_items.unit_price) AS revenue")
+
+    if date != nil
+      total_revenue = total_revenue.where("CAST (invoices.updated_at AS DATE) = '#{Date.parse(date)}'")
+    end
+
+    total_revenue.take
   end
 end
