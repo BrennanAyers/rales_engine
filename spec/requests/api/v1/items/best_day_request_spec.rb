@@ -28,6 +28,6 @@ describe 'Items Best Day API' do
 
     expect(date["type"]).to eq("date")
 
-    expect(date["attributes"]["id"]).to eq("2012-04-02")
+    expect(date["attributes"]["date"]).to eq("2012-04-02")
   end
 end
