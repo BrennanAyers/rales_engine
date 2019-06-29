@@ -62,6 +62,6 @@ describe 'Customers Favorite Merchant API' do
 
     expect(merchant["type"]).to eq("merchant")
 
-    expect(customer["attributes"]["id"]).to eq(@customer_6.id)
+    expect(merchant["attributes"]["id"]).to eq(@merchant_6.id)
   end
 end
