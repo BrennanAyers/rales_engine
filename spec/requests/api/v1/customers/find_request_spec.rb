@@ -18,7 +18,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_1.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find?id=#{@customer_2.id}"
 
@@ -29,7 +29,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_2.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_2.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find?id=#{@customer_3.id}"
 
@@ -40,7 +40,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_3.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_3.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
   it 'finds a customer by first_name' do
@@ -54,7 +54,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_1.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find?first_name=#{@customer_2.first_name}"
 
@@ -65,7 +65,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_2.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_2.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find?first_name=#{@customer_3.first_name}"
 
@@ -76,7 +76,43 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_3.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_3.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_3.last_name)
+  end
+
+  it 'finds a customer by last_name' do
+
+    get "/api/v1/customers/find?last_name=#{@customer_1.last_name}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body)['data']
+    expect(customer["type"]).to eq("customer")
+
+    expect(customer["attributes"]["id"]).to eq(@customer_1.id)
+    expect(customer["attributes"]["first_name"]).to eq(@customer_1.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_1.last_name)
+
+    get "/api/v1/customers/find?last_name=#{@customer_2.last_name}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body)['data']
+    expect(customer["type"]).to eq("customer")
+
+    expect(customer["attributes"]["id"]).to eq(@customer_2.id)
+    expect(customer["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_2.last_name)
+
+    get "/api/v1/customers/find?last_name=#{@customer_3.last_name}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body)['data']
+    expect(customer["type"]).to eq("customer")
+
+    expect(customer["attributes"]["id"]).to eq(@customer_3.id)
+    expect(customer["attributes"]["first_name"]).to eq(@customer_3.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
   it 'finds a customer by created_at' do
@@ -90,7 +126,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_1.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find?created_at=#{@customer_2.created_at}"
 
@@ -101,7 +137,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_2.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_2.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find?created_at=#{@customer_3.created_at}"
 
@@ -112,7 +148,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_3.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_3.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
   it 'finds a customer by updated_at' do
@@ -126,7 +162,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_1.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find?updated_at=#{@customer_2.updated_at}"
 
@@ -137,7 +173,7 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_2.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_2.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find?updated_at=#{@customer_3.updated_at}"
 
@@ -148,6 +184,6 @@ describe 'Customers Find API' do
 
     expect(customer["attributes"]["id"]).to eq(@customer_3.id)
     expect(customer["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer["attributes"]["last_name"]).to eq(@customer_3.first_name)
+    expect(customer["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 end
