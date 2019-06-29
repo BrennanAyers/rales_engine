@@ -43,7 +43,7 @@ describe 'Merchants Revenue by Date API' do
 
     expect(response).to be_successful
 
-    merchants = JSON.parse(response.body)["data"][0]
+    merchants = JSON.parse(response.body)["data"]
 
     expect(merchants["attributes"]["total_revenue"]).to eq("33.00")
   end
@@ -53,7 +53,7 @@ describe 'Merchants Revenue by Date API' do
 
     expect(response).to be_successful
 
-    merchants = JSON.parse(response.body)["data"][0]
+    merchants = JSON.parse(response.body)["data"]
 
     expect(merchants["attributes"]["total_revenue"]).to eq("14.00")
   end
@@ -63,7 +63,7 @@ describe 'Merchants Revenue by Date API' do
 
     expect(response).to be_successful
 
-    merchant = JSON.parse(response.body)["data"][0]
+    merchant = JSON.parse(response.body)["data"]
 
     expect(merchant["attributes"]["total_revenue"]).to eq("4.00")
   end
@@ -73,7 +73,7 @@ describe 'Merchants Revenue by Date API' do
 
     expect(response).to be_successful
 
-    merchants = JSON.parse(response.body)["data"][0]
+    merchants = JSON.parse(response.body)["data"]
 
     expect(merchants["attributes"]["total_revenue"]).to eq("0.00")
   end
