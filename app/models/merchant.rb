@@ -40,4 +40,14 @@ class Merchant < ApplicationRecord
 
     total_revenue.take
   end
+
+  def favorite_customer
+    Customer.joins(invoices: [:transactions, :merchant])
+    .merge(Transaction.successful)
+    .where("invoices.merchant_id = #{self.id}")
+    .select("customers.*, COUNT (invoices.id) AS invoice_count")
+    .group(:id)
+    .order("invoice_count DESC")
+    .limit(1).take
+  end
 end
