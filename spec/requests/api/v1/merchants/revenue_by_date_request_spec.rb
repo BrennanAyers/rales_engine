@@ -77,4 +77,21 @@ describe 'Merchants Revenue by Date API' do
 
     expect(merchants["attributes"]["total_revenue"]).to eq("0.00")
   end
+
+  it 'sends value for todays revenue with no specific date' do
+    merchant_4 = create(:merchant)
+    customer_4 = create(:customer)
+    item_4 = create(:item, unit_price: 100, merchant: merchant_4)
+    invoice_4 = create(:invoice, merchant: merchant_4, customer: customer_4, updated_at: Date.today)
+    invoice_item_4 = create(:invoice_item, quantity: 15, unit_price: 100, invoice: invoice_4, item: item_4)
+    transaction_4 = create(:transaction, invoice: invoice_4)
+
+    get "/api/v1/merchants/revenue"
+
+    expect(response).to be_successful
+
+    merchants = JSON.parse(response.body)["data"]
+
+    expect(merchants["attributes"]["total_revenue"]).to eq("15.00")
+  end
 end
