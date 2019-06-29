@@ -138,7 +138,7 @@ describe 'Items Find API' do
 
   it 'finds a item by unit_price' do
 
-    get "/api/v1/items/find?unit_price=#{@item_1.unit_price}"
+    get "/api/v1/items/find?unit_price=#{'%.2f' % @item_1.unit_price.fdiv(100)}"
 
     expect(response).to be_successful
 
@@ -151,7 +151,7 @@ describe 'Items Find API' do
     expect(item["attributes"]["merchant_id"]).to eq(@item_1.merchant_id)
     expect(item["attributes"]["unit_price"]).to eq('%.2f' % @item_1.unit_price.fdiv(100))
 
-    get "/api/v1/items/find?unit_price=#{@item_2.unit_price}"
+    get "/api/v1/items/find?unit_price=#{'%.2f' % @item_2.unit_price.fdiv(100)}"
 
     expect(response).to be_successful
 
@@ -164,7 +164,7 @@ describe 'Items Find API' do
     expect(item["attributes"]["merchant_id"]).to eq(@item_2.merchant_id)
     expect(item["attributes"]["unit_price"]).to eq('%.2f' % @item_2.unit_price.fdiv(100))
 
-    get "/api/v1/items/find?unit_price=#{@item_3.unit_price}"
+    get "/api/v1/items/find?unit_price=#{'%.2f' % @item_3.unit_price.fdiv(100)}"
 
     expect(response).to be_successful
 
