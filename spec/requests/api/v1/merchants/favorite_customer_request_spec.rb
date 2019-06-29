@@ -61,7 +61,7 @@ describe 'Merchants Favorite Customer API' do
 
     customer = JSON.parse(response.body)['data']
 
-    expect(customer.count).to eq(1)
+    expect(customer["type"]).to eq("customer")
 
     expect(customer["attributes"]["id"]).to eq(@customer_6.id)
   end
