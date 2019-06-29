@@ -30,4 +30,19 @@ describe 'Items Best Day API' do
 
     expect(date["attributes"]["best_day"]).to eq("2012-04-02")
   end
+
+  it 'sends the date by most sold and sorted by closest day' do
+    @invoice_4 = create(:invoice, merchant: @merchant_2, customer: @customer_2, updated_at: Date.yesterday)
+    @invoice_item_2 = create(:invoice_item, quantity: 4, unit_price: 1000, invoice: @invoice_4, item: @item)
+    @transaction_2 = create(:transaction, invoice: @invoice_4)
+    get "/api/v1/items/#{@item.id}/best_day"
+
+    expect(response).to be_successful
+
+    date = JSON.parse(response.body)["data"]
+
+    expect(date["type"]).to eq("best_day")
+
+    expect(date["attributes"]["best_day"]).to eq(Date.yesterday.to_s)
+  end
 end
