@@ -14,7 +14,7 @@ describe "Invoice Items API" do
   end
 
   it "can get one invoice item by its id" do
-    object = create(:invoice_item)
+    object = create(:invoice_item, unit_price: 1000)
 
     get "/api/v1/invoice_items/#{object.id}"
 
@@ -26,6 +26,6 @@ describe "Invoice Items API" do
     expect(invoice_item["attributes"]["item_id"]).to eq(object.item_id)
     expect(invoice_item["attributes"]["invoice_id"]).to eq(object.invoice_id)
     expect(invoice_item["attributes"]["quantity"]).to eq(object.quantity)
-    expect(invoice_item["attributes"]["unit_price"]).to eq(object.unit_price.fdiv(100).to_s)
+    expect(invoice_item["attributes"]["unit_price"]).to eq(('%.2f' % object.unit_price.fdiv(100)).to_s)
   end
 end

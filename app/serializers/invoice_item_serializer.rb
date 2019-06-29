@@ -3,6 +3,6 @@ class InvoiceItemSerializer
   attributes :id, :item_id, :invoice_id, :quantity
 
   attribute :unit_price do |object|
-    "#{object.unit_price.fdiv(100)}"
+    "#{('%.2f' % object.unit_price.fdiv(100))}"
   end
 end
