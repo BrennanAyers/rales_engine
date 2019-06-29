@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
       namespace :customers do
         get '/:id/favorite_merchant', to: 'favorite_merchant#show'
+
+        get '/find', to: 'find#show'
       end
 
       namespace :items do
