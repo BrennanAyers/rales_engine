@@ -25,5 +25,6 @@ class Merchant < ApplicationRecord
     .where("CAST (invoices.updated_at AS DATE) = '#{Date.parse(date)}'")
     .merge(Transaction.successful)
     .select("SUM (invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
+    .take
   end
 end
