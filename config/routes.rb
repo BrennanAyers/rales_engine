@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         get '/revenue', to: 'revenue#index'
         get '/:id/revenue', to: 'revenue#show'
         get '/:id/favorite_customer', to: 'favorite_customer#show'
+
+        get '/find', to: 'find#show'
       end
 
       namespace :customers do
