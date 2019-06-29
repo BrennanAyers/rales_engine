@@ -26,8 +26,8 @@ describe 'Items Best Day API' do
 
     date = JSON.parse(response.body)["data"]
 
-    expect(date["type"]).to eq("date")
+    expect(date["type"]).to eq("best_day")
 
-    expect(date["attributes"]["date"]).to eq("2012-04-02")
+    expect(date["attributes"]["best_day"]).to eq("2012-04-02")
   end
 end
