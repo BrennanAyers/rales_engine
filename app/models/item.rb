@@ -26,7 +26,7 @@ class Item < ApplicationRecord
     .merge(Transaction.successful)
     .select("invoices.updated_at, SUM (invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
     .group(:updated_at)
-    .order("total_revenue DESC")
+    .order("total_revenue DESC, updated_at DESC")
     .limit(1).take
   end
 end
