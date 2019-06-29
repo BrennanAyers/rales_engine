@@ -31,5 +31,10 @@ RSpec.describe Item, type: :model do
       expect(Item.most_revenue(1)).to eq([@item_2])
       expect(Item.most_revenue).to eq([@item_2, @item_3, @item_1])
     end
+
+    it 'most_items' do
+      expect(Item.most_items(1)).to eq([@item_1])
+      expect(Item.most_items).to eq([@item_1, @item_3, @item_2])
+    end
   end
 end
