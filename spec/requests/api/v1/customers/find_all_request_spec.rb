@@ -13,192 +13,192 @@ describe 'Customers Find All API' do
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_1.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find_all?id=#{@customer_2.id}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_2.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_2.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find_all?id=#{@customer_3.id}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_3.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_3.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_3.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_3.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
-  it 'finds a customer by first_name' do
+  it 'finds customers by first_name' do
 
     get "/api/v1/customers/find_all?first_name=#{@customer_1.first_name}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_1.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find_all?first_name=#{@customer_2.first_name}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_2.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_2.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find_all?first_name=#{@customer_3.first_name}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.last["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.last["type"]).to eq("customer")
 
-    expect(customer.last["attributes"]["id"]).to eq(@customer_3.id)
-    expect(customer.last["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer.last["attributes"]["last_name"]).to eq(@customer_3.last_name)
+    expect(customers.last["attributes"]["id"]).to eq(@customer_3.id)
+    expect(customers.last["attributes"]["first_name"]).to eq(@customer_3.first_name)
+    expect(customers.last["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
-  it 'finds a customer by last_name' do
+  it 'finds customers by last_name' do
 
     get "/api/v1/customers/find_all?last_name=#{@customer_1.last_name}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_1.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find_all?last_name=#{@customer_2.last_name}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_2.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_2.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find_all?last_name=#{@customer_3.last_name}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.last["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.last["type"]).to eq("customer")
 
-    expect(customer.last["attributes"]["id"]).to eq(@customer_3.id)
-    expect(customer.last["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer.last["attributes"]["last_name"]).to eq(@customer_3.last_name)
+    expect(customers.last["attributes"]["id"]).to eq(@customer_3.id)
+    expect(customers.last["attributes"]["first_name"]).to eq(@customer_3.first_name)
+    expect(customers.last["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
-  it 'finds a customer by created_at' do
+  it 'finds customers by created_at' do
 
     get "/api/v1/customers/find_all?created_at=#{@customer_1.created_at}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_1.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find_all?created_at=#{@customer_2.created_at}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.last["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.last["type"]).to eq("customer")
 
-    expect(customer.last["attributes"]["id"]).to eq(@customer_2.id)
-    expect(customer.last["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer.last["attributes"]["last_name"]).to eq(@customer_2.last_name)
+    expect(customers.last["attributes"]["id"]).to eq(@customer_2.id)
+    expect(customers.last["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customers.last["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find_all?created_at=#{@customer_3.created_at}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_3.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_3.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_3.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_3.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 
-  it 'finds a customer by updated_at' do
+  it 'finds customers by updated_at' do
 
     get "/api/v1/customers/find_all?updated_at=#{@customer_1.updated_at}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(1)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(1)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_1.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_1.last_name)
 
     get "/api/v1/customers/find_all?updated_at=#{@customer_2.updated_at}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.first["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.first["type"]).to eq("customer")
 
-    expect(customer.first["attributes"]["id"]).to eq(@customer_2.id)
-    expect(customer.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customer.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
+    expect(customers.first["attributes"]["id"]).to eq(@customer_2.id)
+    expect(customers.first["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customers.first["attributes"]["last_name"]).to eq(@customer_2.last_name)
 
     get "/api/v1/customers/find_all?updated_at=#{@customer_3.updated_at}"
 
     expect(response).to be_successful
 
-    customer = JSON.parse(response.body)['data']
-    expect(customer.count).to eq(2)
-    expect(customer.last["type"]).to eq("customer")
+    customers = JSON.parse(response.body)['data']
+    expect(customers.count).to eq(2)
+    expect(customers.last["type"]).to eq("customer")
 
-    expect(customer.last["attributes"]["id"]).to eq(@customer_3.id)
-    expect(customer.last["attributes"]["first_name"]).to eq(@customer_3.first_name)
-    expect(customer.last["attributes"]["last_name"]).to eq(@customer_3.last_name)
+    expect(customers.last["attributes"]["id"]).to eq(@customer_3.id)
+    expect(customers.last["attributes"]["first_name"]).to eq(@customer_3.first_name)
+    expect(customers.last["attributes"]["last_name"]).to eq(@customer_3.last_name)
   end
 end
