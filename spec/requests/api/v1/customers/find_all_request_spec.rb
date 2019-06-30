@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Customers Find API' do
+describe 'Customers Find All API' do
   before :each do
     @customer_1 = create(:customer, first_name: "Chuck", last_name: "Norris", created_at: "2012-03-27T14:54:05.000Z", updated_at: "2012-03-27T14:54:05.000Z")
     @customer_2 = create(:customer, first_name: "Mr.", last_name: "Governator", created_at: "2012-03-27T14:54:05.000Z", updated_at: "2012-03-28T14:54:05.000Z")
@@ -54,7 +54,7 @@ describe 'Customers Find API' do
 
     customer = JSON.parse(response.body)['data']
     expect(customer.count).to eq(2)
-    expect(customer["type"]).to eq("customer")
+    expect(customer.first["type"]).to eq("customer")
 
     expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
@@ -93,7 +93,7 @@ describe 'Customers Find API' do
 
     customer = JSON.parse(response.body)['data']
     expect(customer.count).to eq(1)
-    expect(customer["type"]).to eq("customer")
+    expect(customer.first["type"]).to eq("customer")
 
     expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
@@ -132,7 +132,7 @@ describe 'Customers Find API' do
 
     customer = JSON.parse(response.body)['data']
     expect(customer.count).to eq(2)
-    expect(customer["type"]).to eq("customer")
+    expect(customer.first["type"]).to eq("customer")
 
     expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
@@ -171,7 +171,7 @@ describe 'Customers Find API' do
 
     customer = JSON.parse(response.body)['data']
     expect(customer.count).to eq(1)
-    expect(customer["type"]).to eq("customer")
+    expect(customer.first["type"]).to eq("customer")
 
     expect(customer.first["attributes"]["id"]).to eq(@customer_1.id)
     expect(customer.first["attributes"]["first_name"]).to eq(@customer_1.first_name)
