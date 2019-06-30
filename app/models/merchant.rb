@@ -2,8 +2,10 @@ class Merchant < ApplicationRecord
   has_many :items
   has_many :invoices
 
+  default_scope -> { order(:id)}
+
   def self.most_revenue(amount = nil)
-    joins(invoices: [:invoice_items, :transactions])
+    unscoped.joins(invoices: [:invoice_items, :transactions])
     .select("merchants.*, SUM (invoice_items.quantity * invoice_items.unit_price) AS revenue")
     .merge(Transaction.successful)
     .group("merchants.id")
@@ -12,7 +14,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.most_items(amount = nil)
-    joins(invoices: [:invoice_items, :transactions])
+    unscoped.joins(invoices: [:invoice_items, :transactions])
     .select("merchants.*, SUM (invoice_items.quantity) AS items_sold")
     .merge(Transaction.successful)
     .group("merchants.id")
@@ -22,7 +24,7 @@ class Merchant < ApplicationRecord
 
   def self.revenue(date = nil)
     date = Date.today.to_s if date == nil
-    joins(invoices: [:invoice_items, :transactions])
+    unscoped.joins(invoices: [:invoice_items, :transactions])
     .where("CAST (invoices.updated_at AS DATE) = '#{Date.parse(date)}'")
     .merge(Transaction.successful)
     .select("SUM (invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
