@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   default_scope -> { order(:id)}
 
   def self.most_revenue(amount = nil)
-    unscoped.joins(invoices: :transactions)
+    unscope(:order).joins(invoices: :transactions)
     .select("items.*, SUM (invoice_items.quantity * invoice_items.unit_price) AS revenue")
     .merge(Transaction.successful)
     .group("items.id")
@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   end
 
   def self.most_items(amount = nil)
-    unscoped.joins(invoices: :transactions)
+    unscope(:order).joins(invoices: :transactions)
     .select("items.*, SUM (invoice_items.quantity) AS items_sold")
     .merge(Transaction.successful)
     .group("items.id")
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
   end
 
   def best_day
-    invoices.joins(:transactions)
+    invoices.unscope(:order).joins(:transactions)
     .merge(Transaction.successful)
     .select("invoices.updated_at, SUM (invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
     .group(:updated_at)

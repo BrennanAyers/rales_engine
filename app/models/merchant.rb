@@ -5,7 +5,7 @@ class Merchant < ApplicationRecord
   default_scope -> { order(:id)}
 
   def self.most_revenue(amount = nil)
-    unscoped.joins(invoices: [:invoice_items, :transactions])
+    unscope(:order).joins(invoices: [:invoice_items, :transactions])
     .select("merchants.*, SUM (invoice_items.quantity * invoice_items.unit_price) AS revenue")
     .merge(Transaction.successful)
     .group("merchants.id")
@@ -14,7 +14,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.most_items(amount = nil)
-    unscoped.joins(invoices: [:invoice_items, :transactions])
+    unscope(:order).joins(invoices: [:invoice_items, :transactions])
     .select("merchants.*, SUM (invoice_items.quantity) AS items_sold")
     .merge(Transaction.successful)
     .group("merchants.id")
@@ -24,7 +24,7 @@ class Merchant < ApplicationRecord
 
   def self.revenue(date = nil)
     date = Date.today.to_s if date == nil
-    unscoped.joins(invoices: [:invoice_items, :transactions])
+    unscope(:order).joins(invoices: [:invoice_items, :transactions])
     .where("CAST (invoices.updated_at AS DATE) = '#{Date.parse(date)}'")
     .merge(Transaction.successful)
     .select("SUM (invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
@@ -32,7 +32,7 @@ class Merchant < ApplicationRecord
   end
 
   def revenue(date = nil)
-    total_revenue = invoices.joins(:invoice_items, :transactions)
+    total_revenue = invoices.unscope(:order).joins(:invoice_items, :transactions)
     .merge(Transaction.successful)
     .select("SUM (invoice_items.quantity * invoice_items.unit_price) AS revenue")
 
@@ -44,7 +44,7 @@ class Merchant < ApplicationRecord
   end
 
   def favorite_customer
-    Customer.unscoped.joins(invoices: [:transactions, :merchant])
+    Customer.unscope(:order).joins(invoices: [:transactions, :merchant])
     .merge(Transaction.successful)
     .where("invoices.merchant_id = #{self.id}")
     .select("customers.*, COUNT (invoices.id) AS invoice_count")
