@@ -9,12 +9,14 @@ Rails.application.routes.draw do
         get '/:id/favorite_customer', to: 'favorite_customer#show'
 
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
 
       namespace :customers do
         get '/:id/favorite_merchant', to: 'favorite_merchant#show'
 
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
 
       namespace :items do
@@ -23,18 +25,22 @@ Rails.application.routes.draw do
         get '/:id/best_day', to: 'best_day#show'
 
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
 
       namespace :invoices do
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
 
       namespace :invoice_items do
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
 
       namespace :transactions do
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
       resources :merchants, only: [:index, :show]
       resources :customers, only: [:index, :show]
