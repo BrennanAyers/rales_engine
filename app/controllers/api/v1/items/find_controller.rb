@@ -3,10 +3,10 @@ class Api::V1::Items::FindController < ApplicationController
     finders = [:id, :name, :description, :merchant_id, :unit_price, :created_at, :updated_at]
     first_finder = finders.map {|key| key if params[key]}.compact.first
     if first_finder == :unit_price
-      merchant = Item.find_by(first_finder => (params[first_finder].to_f * 100).round)
+      item = Item.find_by(first_finder => (params[first_finder].to_f * 100).round)
     else
-      merchant = Item.find_by(first_finder => params[first_finder])
+      item = Item.find_by(first_finder => params[first_finder])
     end
-    render json: ItemSerializer.new(merchant)
+    render json: ItemSerializer.new(item)
   end
 end
