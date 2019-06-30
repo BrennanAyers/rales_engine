@@ -44,7 +44,7 @@ class Merchant < ApplicationRecord
   end
 
   def favorite_customer
-    Customer.joins(invoices: [:transactions, :merchant])
+    Customer.unscoped.joins(invoices: [:transactions, :merchant])
     .merge(Transaction.successful)
     .where("invoices.merchant_id = #{self.id}")
     .select("customers.*, COUNT (invoices.id) AS invoice_count")
