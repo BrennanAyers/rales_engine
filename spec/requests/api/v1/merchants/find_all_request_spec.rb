@@ -50,6 +50,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(2)
     expect(merchants.first["type"]).to eq("merchant")
 
     expect(merchants.first["attributes"]["id"]).to eq(@merchant_1.id)
@@ -60,6 +61,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(1)
     expect(merchants.first["type"]).to eq("merchant")
 
     expect(merchants.first["attributes"]["id"]).to eq(@merchant_2.id)
@@ -70,6 +72,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(2)
     expect(merchants.last["type"]).to eq("merchant")
 
     expect(merchants.last["attributes"]["id"]).to eq(@merchant_3.id)
@@ -83,6 +86,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(2)
     expect(merchants.first["type"]).to eq("merchant")
 
     expect(merchants.first["attributes"]["id"]).to eq(@merchant_1.id)
@@ -93,6 +97,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(2)
     expect(merchants.last["type"]).to eq("merchant")
 
     expect(merchants.last["attributes"]["id"]).to eq(@merchant_2.id)
@@ -103,6 +108,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(1)
     expect(merchants.first["type"]).to eq("merchant")
 
     expect(merchants.first["attributes"]["id"]).to eq(@merchant_3.id)
@@ -116,6 +122,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(1)
     expect(merchants.first["type"]).to eq("merchant")
 
     expect(merchants.first["attributes"]["id"]).to eq(@merchant_1.id)
@@ -126,6 +133,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(2)
     expect(merchants.first["type"]).to eq("merchant")
 
     expect(merchants.first["attributes"]["id"]).to eq(@merchant_2.id)
@@ -136,6 +144,7 @@ describe 'Merchants Find All API' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body)['data']
+    expect(merchants.count).to eq(2)
     expect(merchants.last["type"]).to eq("merchant")
 
     expect(merchants.last["attributes"]["id"]).to eq(@merchant_3.id)
