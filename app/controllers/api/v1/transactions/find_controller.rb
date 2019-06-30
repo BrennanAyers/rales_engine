@@ -5,4 +5,11 @@ class Api::V1::Transactions::FindController < ApplicationController
     transaction = Transaction.find_by(first_finder => params[first_finder])
     render json: TransactionSerializer.new(transaction)
   end
+
+  def index
+    finders = [:id, :invoice_id, :credit_card_number, :result, :created_at, :updated_at]
+    first_finder = finders.map {|key| key if params[key]}.compact.first
+    transactions = Transaction.where(first_finder => params[first_finder])
+    render json: TransactionSerializer.new(transactions)
+  end
 end
