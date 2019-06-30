@@ -120,7 +120,7 @@ describe 'Items Find All API' do
     expect(response).to be_successful
 
     items = JSON.parse(response.body)['data']
-    expect(items.first.count).to eq(2)
+    expect(items.count).to eq(2)
     expect(items.first["type"]).to eq("item")
 
     expect(items.first["attributes"]["id"]).to eq(@item_2.id)
@@ -134,14 +134,14 @@ describe 'Items Find All API' do
     expect(response).to be_successful
 
     items = JSON.parse(response.body)['data']
-    expect(items.count).to eq()
-    expect(items.first["type"]).to eq("item")
+    expect(items.count).to eq(2)
+    expect(items.last["type"]).to eq("item")
 
-    expect(items.first["attributes"]["id"]).to eq(@item_3.id)
-    expect(items.first["attributes"]["name"]).to eq(@item_3.name)
-    expect(items.first["attributes"]["description"]).to eq(@item_3.description)
-    expect(items.first["attributes"]["merchant_id"]).to eq(@item_3.merchant_id)
-    expect(items.first["attributes"]["unit_price"]).to eq('%.2f' % @item_3.unit_price.fdiv(100))
+    expect(items.last["attributes"]["id"]).to eq(@item_3.id)
+    expect(items.last["attributes"]["name"]).to eq(@item_3.name)
+    expect(items.last["attributes"]["description"]).to eq(@item_3.description)
+    expect(items.last["attributes"]["merchant_id"]).to eq(@item_3.merchant_id)
+    expect(items.last["attributes"]["unit_price"]).to eq('%.2f' % @item_3.unit_price.fdiv(100))
   end
 
   it 'finds items by unit_price' do
@@ -196,7 +196,7 @@ describe 'Items Find All API' do
     expect(response).to be_successful
 
     items = JSON.parse(response.body)['data']
-    expect(items.first.count).to eq(1)
+    expect(items.count).to eq(1)
     expect(items.first["type"]).to eq("item")
 
     expect(items.first["attributes"]["id"]).to eq(@item_1.id)
@@ -300,7 +300,7 @@ describe 'Items Find All API' do
     expect(response).to be_successful
 
     items = JSON.parse(response.body)['data']
-    expect(items.first.count).to eq(2)
+    expect(items.count).to eq(2)
     expect(items.first["type"]).to eq("item")
 
     expect(items.first["attributes"]["id"]).to eq(@item_2.id)
