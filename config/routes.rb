@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         get '/:id/favorite_customer', to: 'favorite_customer#show'
 
         get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
       end
 
       namespace :customers do
