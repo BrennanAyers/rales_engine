@@ -1,6 +1,8 @@
 class Customer < ApplicationRecord
   has_many :invoices
 
+  default_scope -> { order(:id)}
+
   def favorite_merchant
     Merchant.unscoped.joins(invoices: [:transactions, :customer])
     .merge(Transaction.successful)
