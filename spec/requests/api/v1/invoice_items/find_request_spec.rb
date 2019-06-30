@@ -213,7 +213,7 @@ describe 'Invoice Items Find API' do
     expect(invoice_item["attributes"]["item_id"]).to eq(@invoice_item_2.item_id)
     expect(invoice_item["attributes"]["invoice_id"]).to eq(@invoice_item_2.invoice_id)
     expect(invoice_item["attributes"]["quantity"]).to eq(@invoice_item_2.quantity)
-    expect(invoice2item["attributes"]["unit_price"]).to eq('%.2f' % @invoice_item_2.unit_price.fdiv(100))
+    expect(invoice_item["attributes"]["unit_price"]).to eq('%.2f' % @invoice_item_2.unit_price.fdiv(100))
 
     get "/api/v1/invoice_items/find?unit_price=#{'%.2f' % @invoice_item_3.unit_price.fdiv(100)}"
 
@@ -225,7 +225,7 @@ describe 'Invoice Items Find API' do
     expect(invoice_item["attributes"]["id"]).to eq(@invoice_item_3.id)
     expect(invoice_item["attributes"]["item_id"]).to eq(@invoice_item_3.item_id)
     expect(invoice_item["attributes"]["invoice_id"]).to eq(@invoice_item_3.invoice_id)
-    expect(invoice_item["attributes"]["quantity"]).to eq(@invoice_it3m_3.quantity)
+    expect(invoice_item["attributes"]["quantity"]).to eq(@invoice_item_3.quantity)
     expect(invoice_item["attributes"]["unit_price"]).to eq('%.2f' % @invoice_item_3.unit_price.fdiv(100))
   end
 
