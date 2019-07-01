@@ -5,7 +5,7 @@ describe 'Invoice Invoice Items Relationship API' do
     @merchant = create(:merchant)
     @customer = create(:customer)
     @item = create(:item, name: "Fake Taxes", description: "They look legit!", merchant: @merchant, unit_price: 199999)
-    @invoice_1 = create(:invoice, customer: @customer, merchant: @merchant, status: "fraudulent")
+    @invoice = create(:invoice, customer: @customer, merchant: @merchant, status: "fraudulent")
     @invoice_item_1 = create(:invoice_item, item: @item, invoice: @invoice, quantity: 1, unit_price: 199999)
     @invoice_item_2 = create(:invoice_item, item: @item, invoice: @invoice, quantity: 27, unit_price: 1500)
     @invoice_item_3 = create(:invoice_item, item: @item, invoice: @invoice, quantity: 10000, unit_price: 2049)
