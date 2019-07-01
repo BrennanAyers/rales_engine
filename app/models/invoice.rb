@@ -6,4 +6,8 @@ class Invoice < ApplicationRecord
   has_many :transactions
 
   default_scope -> { order(:id)}
+
+  def self.random
+    unscope(:order).order("RANDOM()").limit(1).take
+  end
 end
