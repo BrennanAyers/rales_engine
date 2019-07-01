@@ -16,10 +16,10 @@ describe 'Invoice Item Item Relationship API' do
     item = JSON.parse(response.body)['data']
 
     expect(item["type"]).to eq("item")
-    expect(item["attributes"]["id"]).to eq(@item[index].id)
-    expect(item["attributes"]["name"]).to eq(@item[index].name)
-    expect(item["attributes"]["description"]).to eq(@item[index].description)
-    expect(item["attributes"]["merchant_id"]).to eq(@item[index].merchant_id)
-    expect(item["attributes"]["unit_price"]).to eq('%.2f' % @item[index].unit_price.fdiv(100))
+    expect(item["attributes"]["id"]).to eq(@item.id)
+    expect(item["attributes"]["name"]).to eq(@item.name)
+    expect(item["attributes"]["description"]).to eq(@item.description)
+    expect(item["attributes"]["merchant_id"]).to eq(@item.merchant_id)
+    expect(item["attributes"]["unit_price"]).to eq('%.2f' % @item.unit_price.fdiv(100))
   end
 end
