@@ -7,9 +7,9 @@ describe 'Customer Transactions Relationship API' do
     @invoice_1 = create(:invoice, customer: @customer, merchant: @merchant, status: "fraudulent")
     @invoice_2 = create(:invoice, customer: @customer, merchant: @merchant, status: "meow")
     @invoice_3 = create(:invoice, customer: @customer, merchant: @merchant, status: "snoozed")
-    @transaction_1 = create(:transaction, invoice_id: @invoice_1 , credit_card_number: "666", result: "oof")
-    @transaction_2 = create(:transaction, invoice_id: @invoice_2 , credit_card_number: "1738", result: "naptime")
-    @transaction_3 = create(:transaction, invoice_id: @invoice_3 , credit_card_number: "80085", result: "boring")
+    @transaction_1 = create(:transaction, invoice: @invoice_1 , credit_card_number: "666", result: "oof")
+    @transaction_2 = create(:transaction, invoice: @invoice_2 , credit_card_number: "1738", result: "naptime")
+    @transaction_3 = create(:transaction, invoice: @invoice_3 , credit_card_number: "80085", result: "boring")
     @transaction_list = [@transaction_1, @transaction_2, @transaction_3]
   end
 
