@@ -11,7 +11,6 @@ describe 'Item Merchant Relationship API' do
     expect(response).to be_successful
 
     merchant = JSON.parse(response.body)['data']
-    expect(merchant.count).to eq(1)
 
     expect(merchant["type"]).to eq("merchant")
     expect(merchant["attributes"]["id"]).to eq(@merchant.id)
