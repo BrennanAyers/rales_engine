@@ -10,7 +10,7 @@ describe 'Invoice Items Relationship API' do
     @invoice = create(:invoice, customer: @customer, merchant: @merchant, status: "fraudulent")
     @invoice_item_1 = create(:invoice_item, item: @item_1, invoice: @invoice, quantity: 1, unit_price: 199999)
     @invoice_item_2 = create(:invoice_item, item: @item_2, invoice: @invoice, quantity: 27, unit_price: 1500)
-    @invoice_item_3 = create(:invoice_item, item: @item_2, invoice: @invoice, quantity: 10000, unit_price: 2049)
+    @invoice_item_3 = create(:invoice_item, item: @item_3, invoice: @invoice, quantity: 10000, unit_price: 2049)
     @item_list = [@item_1, @item_2, @item_3]
   end
 
