@@ -12,4 +12,8 @@ class Customer < ApplicationRecord
     .order("invoice_count DESC")
     .limit(1).take
   end
+
+  def self.random
+    unscope(:order).order("RANDOM()").limit(1).take
+  end
 end
